@@ -1,0 +1,15 @@
+*/.env
+.circleci/
+.pytest_cache/
+scripts/
+*.egg-info/
+.coverage
+.gitignore
+.gitmessage
+.pre-commit-config.yaml
+docker-compose.yaml
+Dockerfile.base
+PULL_REQUEST_TEMPLATE
+Makefile
+README.md
+lambda

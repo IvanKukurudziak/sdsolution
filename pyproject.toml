@@ -1,0 +1,113 @@
+[tool.poetry]
+name = "sdsolution"
+version = "0.1.0"
+description = "Weather API Service"
+authors = ["ivan.kukurudziak"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.7"
+fastapi = {extras = ["starlette"], version = "^0.115.7"}
+httpx = "0.28.1"
+pydantic-settings = "2.7.1"
+uvicorn = "0.34.0"
+aioboto3 = "13.4.0"
+aiobotocore = "2.18.0"
+types-aiobotocore-s3 = "2.19.0"
+types-aiobotocore-dynamodb = "2.19.0"
+
+[tool.pytest.ini_options]
+asyncio_mode = 'auto'
+testpaths = 'tests'
+addopts = '--strict-markers'
+
+[tool.pytest-watch]
+ext = '.py, .yaml, .cfg'
+
+[tool.ruff]
+target-version = "py312"
+extend-exclude = ["tests"]
+
+[tool.ruff.lint]
+select = [
+  "E", # pycodestyle
+  "W", # pycodestyle warnings
+  "F", # pyflakes
+  "I", # isort
+  "N", # pep8-naming
+  "D", # pydocstyle
+  "UP", # pyupgrade
+  "ASYNC", # flake8-async
+  "S", # flake8-bandit
+  "B", # flake8-bugbear
+  "C4", # flake8-comprehensions
+  "PL", # pylint
+  "RUF" # ruff
+]
+# derived from google convention https://www.pydocstyle.org/en/stable/error_codes.html#default-conventions
+ignore = [
+  "D100",
+  "D101",
+  "D102",
+  "D103",
+  "D103",
+  "D104",
+  "D105",
+  "D106",
+  "D107",
+  "D204",
+  "D213",
+  "D215",
+  "D400",
+  "D401",
+  "D404",
+  "D406",
+  "D407",
+  "D408",
+  "D409",
+  "D413",
+  "N818",
+  "PLR2004",
+  "S101",
+  "S106",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.pylama]
+paths = "wather_service"
+linters = "pycodestyle,pyflakes,pydocstyle"
+
+[tool.pylama.pycodestyle]
+# https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length
+max_line_length = 88
+
+[tool.black]
+exclude = '.vscode|.eggs|venv'
+
+[tool.isort]
+profile = "black"
+[tool.mypy]
+plugins = [
+  "pydantic.mypy",
+]
+exclude = ['tests']
+ignore_missing_imports = true
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "75.8.0"
+pytest-asyncio = "0.25.2"
+isort = "^5.13.2"
+black = "^24.10.0"
+pylama = "^8.4.1"
+pytest = "^8.3.4"
+ruff = "^0.9.3"
+asgi-lifespan = "^2.1.0"
+mypy = "1.14.1"
+moto = "^5.0.27"
+respx = "^0.22.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
